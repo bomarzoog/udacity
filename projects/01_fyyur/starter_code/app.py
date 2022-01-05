@@ -124,7 +124,7 @@ def venues():
         "city":i.city,"state":i.state,"venues": ven_city
         }]
     
-    [dict(t) for t in {tuple(d.items()) for d in data}]
+    [dict(t) for t in {set(tuple(d.items())) for d in data}]
 
       
 
