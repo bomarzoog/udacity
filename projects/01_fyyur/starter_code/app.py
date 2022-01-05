@@ -123,7 +123,7 @@ def venues():
         }]
     print(data)
 
-   return render_template('pages/venues.html', areas=data);
+   return render_template('pages/venues.html', areas=data)
 
 
 # TODO: replace with real venues data.
