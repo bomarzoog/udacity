@@ -117,17 +117,13 @@ def index():
 def venues():
     venues = Venue.query.all()
     data =[]
-    cities = set()
+    cities_states = set(city,state)
     states = set()
     
     for i in venues:
-      cities.add(i.city)
-      states.add(i.state)
-
-    for city,state in cities,states:
-      ven_city = Venue.query.filter_by(city=i.city).order_by('city').all()
+      ven_city = Venue.query.filter_by(city=i.city).order_by('city').distinct()
       data += [{
-        "city":city,"state":state,"venues": ven_city
+        "city":i.city,"state":i.state,"venues": ven_city
         }]
     
     return render_template('pages/venues.html', areas=data)
