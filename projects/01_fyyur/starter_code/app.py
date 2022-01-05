@@ -123,8 +123,15 @@ def venues():
       data += [{
         "city":i.city,"state":i.state,"venues": ven_city
         }]
-    
-    [dict(t) for t in {set(tuple(d.items())) for d in data}]
+
+    seen = set()
+    new_l = []
+    for d in data:
+      t = tuple(d.items())
+      if t not in seen:
+        seen.add(t)
+        new_l.append(d)
+        print new_l
 
       
 
