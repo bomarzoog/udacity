@@ -118,7 +118,7 @@ def venues():
     venues = Venue.query.all()
     data =[]
     cities = set()
-    states -set()
+    states = set()
     
     for i in venues:
       cities.add(i.city)
