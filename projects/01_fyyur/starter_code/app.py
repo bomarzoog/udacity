@@ -115,11 +115,11 @@ def index():
 
 @app.route('/venues')
 def venues():
-    venues = Venue.query.all()
+    venues = Venue.query.distinct(Venue.city).all()
     data =[]
     
     for i in venues:
-      ven_city = Venue.query.distinct(Venue.city).filter_by(city=i.city).all()
+      ven_city = Venue.query.filter_by(city=i.city).all()
       data += [{
         "city":i.city,"state":i.state,"venues": ven_city
         }]
