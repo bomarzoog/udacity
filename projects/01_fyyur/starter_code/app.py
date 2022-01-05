@@ -118,6 +118,7 @@ def venues():
     venues = Venue.query.all()
     data = []
     
+    print (range(len (venues)))
     for i in venues:
         ven_city = Venue.query.filter_by(city=i.city).order_by('id').all()
         for j in range(len (venues)):
