@@ -122,8 +122,8 @@ def venues():
             "city":i.city,"state":i.state,"venues": ven_city
         }]
     print(data)
-
-   return render_template('pages/venues.html', areas=data)
+    
+    return render_template('pages/venues.html', areas=data)
 
 
 # TODO: replace with real venues data.
