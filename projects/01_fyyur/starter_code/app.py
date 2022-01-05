@@ -74,7 +74,7 @@ class Venue(db.Model):
     #past_shows_count =
     #upcoming_show_count =
     artist = db.relationship('Artist',secondary=shows,backref=db.backref('venues', lazy=True))
-    genres = db.relationship('Genres',secondary=vgenres,backref=db.backref('venues', lazy=True))
+    genres = db.relationship('Genres',secondary=vgenres,backref=db.backref('venues_g', lazy=True))
 
     # TODO: implement any missing fields, as a database migration using Flask-Migrate
 
