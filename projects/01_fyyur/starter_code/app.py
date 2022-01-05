@@ -74,7 +74,7 @@ class Venue(db.Model):
     #past_shows_count =
     #upcoming_show_count =
     artist = db.relationship('Artist',secondary=shows,backref=db.backref('venues', lazy=True))
-    genres = db.relationship('Genres',secondary=vgenres,backref=db.backref('vgenres', lazy=True))
+    genres = db.relationship('Genres',secondary=vgenres,backref=db.backref('venues', lazy=True))
 
     # TODO: implement any missing fields, as a database migration using Flask-Migrate
 
@@ -91,7 +91,7 @@ class Artist(db.Model):
     facebook_link = db.Column(db.String(120))
     seeking_venue = db.Column(db.Boolean,default=True)
     seeking_description = db.Column(db.String(500))
-    genres = db.relationship('Genres',secondary=agenres,backref=db.backref('agenres', lazy=True))
+    genres = db.relationship('Genres',secondary=agenres,backref=db.backref('artists', lazy=True))
 
 
 class Genres(db.Model):
