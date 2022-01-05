@@ -117,21 +117,16 @@ def index():
 def venues():
     venues = Venue.query.all()
     data =[]
+    cities = set()
     
     for i in venues:
       ven_city = Venue.query.filter_by(city=i.city).order_by('city').all()
-      data += [{
-        "city":i.city,"state":i.state,"venues": ven_city
-        }]
+      cities.add(i.city)
+      if i.city not in cities:
+        data += [{
+          "city":i.city,"state":i.state,"venues": ven_city
+          }]
 
-    seen = set()
-    new_l = []
-    for d in data:
-      t = tuple(d.items())
-      if t not in seen:
-        seen.add(t)
-        new_l.append(d)
-        print (new_l)
 
       
 
