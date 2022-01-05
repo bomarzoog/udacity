@@ -120,12 +120,14 @@ def venues():
     cities = set()
     
     for i in venues:
-      ven_city = Venue.query.filter_by(city=i.city).order_by('city').all()
       cities.add(i.city)
-      if i.city in cities:
-        data += [{
-          "city":i.city,"state":i.state,"venues": ven_city
-          }]
+
+    for city in cities:
+      state = Venue.query.filter_by(city=city).state
+      ven_city = Venue.query.filter_by(city=i.city).order_by('city').all()
+      data += [{
+        "city":city,"state":state,"venues": ven_city
+        }]
 
 
       
