@@ -189,7 +189,7 @@ def search_venues():
 
 @app.route('/venues/<int:venue_id>')
 def show_venue(venue_id):
-  data = Venue.query.filter_by(Venue.id=venue_id)
+  data = Venue.query.filter_by(Venue.id=venue_id).all()
   
   
   return render_template('pages/show_venue.html', venue=data)
