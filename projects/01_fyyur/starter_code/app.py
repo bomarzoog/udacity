@@ -131,6 +131,7 @@ def venues():
       
 
     print(data)
+    print(cities)
     
     return render_template('pages/venues.html', areas=data)
 
