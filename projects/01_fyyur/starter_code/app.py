@@ -116,14 +116,17 @@ def index():
 @app.route('/venues')
 def venues():
     venues = Venue.query.all()
-    data = []
+    data =[]
     
     for i in venues:
       ven_city = Venue.query.filter_by(city=i.city).order_by('city').all()
       data += [{
         "city":i.city,"state":i.state,"venues": ven_city
         }]
-    data = list(set(data))
+    
+    [dict(t) for t in {tuple(d.items()) for d in data}]
+
+      
 
     print(data)
     
