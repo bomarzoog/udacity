@@ -131,7 +131,7 @@ def venues():
       if t not in seen:
         seen.add(t)
         new_l.append(d)
-        print new_l
+        print (new_l)
 
       
 
