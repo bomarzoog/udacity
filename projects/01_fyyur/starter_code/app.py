@@ -43,7 +43,7 @@ shows = db.Table('shows',
 )
 
 vgenres = db.Table('vgenres',
-    db.Column('venue_id', db.Integer, db.ForeignKey('Venue.id'),primary_key=True)
+    db.Column('venue_id', db.Integer, db.ForeignKey('Venue.id'),primary_key=True),
     db.Column('genre_id', db.Integer, db.ForeignKey('Genres.id'),primary_key=True)
 
 )
