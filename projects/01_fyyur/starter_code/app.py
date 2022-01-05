@@ -39,7 +39,7 @@ shows = db.Table('shows',
     db.Column('venue_id', db.Integer, db.ForeignKey('Venue.id'), primary_key=True),
     db.Column('artisit_id', db.Integer, db.ForeignKey('Artist.id'), primary_key=True),
     db.Column('date_time', db.DateTime,nullable=False),
-    db.Column('past_show',db.Boolean,default=False),default=False)
+    db.Column('past_show',db.Boolean,default=False)
 )
 
 vgenres = db.Table('vgenres',
