@@ -118,14 +118,12 @@ def venues():
     venues = Venue.query.all()
     data = []
     
-    print (range(len (venues)))
     for i in venues:
         ven_city = Venue.query.filter_by(city=i.city).order_by('id').all()
-        for j in range(len (venues) -1):
-          if data[j].get("city") != i.city:
-            data += [{
-              "city":i.city,"state":i.state,"venues": ven_city
-               }]
+        data += [{
+          "city":i.city,"state":i.state,"venues": ven_city
+          }]
+          
     print(data)
     
     return render_template('pages/venues.html', areas=data)
