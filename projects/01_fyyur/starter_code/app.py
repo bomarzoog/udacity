@@ -21,7 +21,12 @@ moment = Moment(app)
 app.config.from_object('config')
 db = SQLAlchemy(app)
 
+migrate = Migrate(app,db)
+
 # TODO: connect to a local postgresql database
+
+app.config['SQLALCHEMY_DATABASE_URI']= 'postgresql://postgres:abc@127.0.0.1:5432/fyyur_db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 #----------------------------------------------------------------------------#
 # Models.
@@ -32,12 +37,21 @@ class Venue(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
+    genres = db.Column(db.String)
     city = db.Column(db.String(120))
     state = db.Column(db.String(120))
     address = db.Column(db.String(120))
     phone = db.Column(db.String(120))
     image_link = db.Column(db.String(500))
     facebook_link = db.Column(db.String(120))
+    website_link = db.Column(db.String(120))
+    seeking_talent = db.Column(db.Boolean,default=False)
+    seeking_description = db.Column(db.String(500))
+    #past_shows = 
+    #upcoming_shows =
+    #past_shows_count =
+    #upcoming_show_count =
+    upcoming_show = db.relationship('Show',backref='venue', lazy=True)
 
     # TODO: implement any missing fields, as a database migration using Flask-Migrate
 
@@ -50,8 +64,22 @@ class Artist(db.Model):
     state = db.Column(db.String(120))
     phone = db.Column(db.String(120))
     genres = db.Column(db.String(120))
+    website_link = db.Column(db.String(120))
     image_link = db.Column(db.String(500))
     facebook_link = db.Column(db.String(120))
+    seeking_venue = db.Column(db.Boolean,default=True)
+    seeking_description = db.Column(db.String(500))
+    upcoming_show = db.relationship('Show',backref='artist', lazy=True)
+
+
+    class Show(db.Model):
+    __tablename__= "Show"
+    
+    id = db.Column(db.Integer, primary_key=True)
+    date = db.Column(db.DateTime)
+    venue_id = db.Column(db.Integer,db.ForeignKey('Venue.id'),nullable=False)
+    artist_id = db.Column(db.Integer,db.ForeignKey('Artist.id'),nullable=False)
+    past_show = db.Column(db.Boolean,default=False)
 
     # TODO: implement any missing fields, as a database migration using Flask-Migrate
 
@@ -85,30 +113,43 @@ def index():
 
 @app.route('/venues')
 def venues():
-  # TODO: replace with real venues data.
-  #       num_upcoming_shows should be aggregated based on number of upcoming shows per venue.
-  data=[{
-    "city": "San Francisco",
-    "state": "CA",
-    "venues": [{
-      "id": 1,
-      "name": "The Musical Hop",
-      "num_upcoming_shows": 0,
-    }, {
-      "id": 3,
-      "name": "Park Square Live Music & Coffee",
-      "num_upcoming_shows": 1,
-    }]
-  }, {
-    "city": "New York",
-    "state": "NY",
-    "venues": [{
-      "id": 2,
-      "name": "The Dueling Pianos Bar",
-      "num_upcoming_shows": 0,
-    }]
-  }]
-  return render_template('pages/venues.html', areas=data);
+    venues = Venue.query.all()
+    data = []
+    
+    for i in venues:
+        ven_city = Venue.query.filter_by(city=i.city).order_by('id').all()
+        data += [{
+            "city":i.city,"state":i.state,"venues": ven_city
+        }]
+    print(data)
+
+   return render_template('pages/venues.html', areas=data);
+
+
+# TODO: replace with real venues data.
+#       num_upcoming_shows should be aggregated based on number of upcoming shows per venue.
+#  data=[{
+#    "city": "San Francisco",
+#    "state": "CA",
+#    "venues": [{
+#      "id": 1,
+#      "name": "The Musical Hop",
+#      "num_upcoming_shows": 0,
+#    }, {
+#      "id": 3,
+#      "name": "Park Square Live Music & Coffee",
+#      "num_upcoming_shows": 1,
+#    }]
+#  }, {
+#    "city": "New York",
+#    "state": "NY",
+#    "venues": [{
+#      "id": 2,
+#      "name": "The Dueling Pianos Bar",
+#      "num_upcoming_shows": 0,
+#    }]
+#  }]
+ 
 
 @app.route('/venues/search', methods=['POST'])
 def search_venues():
