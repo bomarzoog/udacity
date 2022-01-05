@@ -122,7 +122,7 @@ def venues():
     for i in venues:
       ven_city = Venue.query.filter_by(city=i.city).order_by('city').all()
       cities.add(i.city)
-      if i.city not in cities:
+      if i.city in cities:
         data += [{
           "city":i.city,"state":i.state,"venues": ven_city
           }]
