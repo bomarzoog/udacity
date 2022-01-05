@@ -119,7 +119,7 @@ def venues():
     data =[]
     
     for i in venues:
-      ven_city = Venue.query(distinct(Venue.city)).filter_by(city=i.city).order_by('city').all()
+      ven_city = Venue.query.distinct(Venue.city).filter_by(city=i.city).all()
       data += [{
         "city":i.city,"state":i.state,"venues": ven_city
         }]
