@@ -117,8 +117,6 @@ def index():
 def venues():
     venues = Venue.query.all()
     data =[]
-    cities_states = set(city,state)
-    states = set()
     
     for i in venues:
       ven_city = Venue.query.filter_by(city=i.city).order_by('city').distinct()
