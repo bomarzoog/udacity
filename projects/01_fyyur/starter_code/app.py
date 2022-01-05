@@ -72,14 +72,14 @@ class Artist(db.Model):
     upcoming_show = db.relationship('Show',backref='artist', lazy=True)
 
 
-    class Show(db.Model):
-    __tablename__= "Show"
-    
-    id = db.Column(db.Integer, primary_key=True)
-    date = db.Column(db.DateTime)
-    venue_id = db.Column(db.Integer,db.ForeignKey('Venue.id'),nullable=False)
-    artist_id = db.Column(db.Integer,db.ForeignKey('Artist.id'),nullable=False)
-    past_show = db.Column(db.Boolean,default=False)
+class Show(db.Model):
+   __tablename__= "Show"
+   
+   id = db.Column(db.Integer, primary_key=True)
+   date = db.Column(db.DateTime)
+   venue_id = db.Column(db.Integer,db.ForeignKey('Venue.id'),nullable=False)
+   artist_id = db.Column(db.Integer,db.ForeignKey('Artist.id'),nullable=False)
+   past_show = db.Column(db.Boolean,default=False)
 
     # TODO: implement any missing fields, as a database migration using Flask-Migrate
 
