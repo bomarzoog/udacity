@@ -49,8 +49,8 @@ vgenres = db.Table('vgenres',
 )
 
 agenres = db.Table('agenres',
-    db.Column('artist_id', db.Integer, db.ForeignKey('Artist.id'),
-    db.Column('genre_id', db.Integer, db.ForeignKey('Genres.id'),
+    db.Column('artist_id', db.Integer, db.ForeignKey('Artist.id'),primary_key=True),
+    db.Column('genre_id', db.Integer, db.ForeignKey('Genres.id'),primary_key=True)
 
 )
 
