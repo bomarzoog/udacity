@@ -196,7 +196,20 @@ def show_venue(venue_id):
     upcoming_count+=1
 
 
-  data = Venue.query.filter_by(id=venue_id).all()
+  data_query = Venue.query.filter_by(id=venue_id).first()
+  print(data_query)
+  print(upcoming_count)
+
+  data = {
+
+
+
+
+
+
+
+
+  }
 
 
   
