@@ -597,8 +597,8 @@ def shows():
       })
     
 
-    print (data_query)
-    return render_template('pages/shows.html', shows=data)
+  print (data_query)
+  return render_template('pages/shows.html', shows=data)
 
   # displays list of shows at /shows
   # TODO: replace with real venues data.
