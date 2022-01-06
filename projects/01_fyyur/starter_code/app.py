@@ -209,6 +209,7 @@ def show_venue(venue_id):
     "city" : data_query.city,
     "state": data_query.state,
     "address": data_query.address,
+    'image_link' : data_query.image_link,
     "phone": data_query.phone,
     "website": data_query.website,
     "facebook_link": data_query.facebook_link,
@@ -407,6 +408,7 @@ def show_artist(artist_id):
   data = {
     'id' : data_query.id,
     "name": data_query.name,
+    'image_link' : data_query.image_link,
     "genres": data_query.genres,
     "city" : data_query.city,
     "state": data_query.state,
