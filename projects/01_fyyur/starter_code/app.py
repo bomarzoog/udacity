@@ -189,10 +189,10 @@ def search_venues():
 
 @app.route('/venues/<int:venue_id>')
 def show_venue(venue_id):
+  
   data = Venue.query.filter_by(id=venue_id).all()
   
-  
-  return render_template('pages/show_venue.html', venue=data)
+  return render_template('pages/show_venue.html', venue=data[0])
 
   # shows the venue page with the given venue_id
   # TODO: replace with real venue data from the venues table, using venue_id
