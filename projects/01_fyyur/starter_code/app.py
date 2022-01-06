@@ -34,27 +34,6 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 # Models.
 #----------------------------------------------------------------------------#
 
-shows = db.Table('shows',
-    db.Column('show_id', db.Integer, primary_key=True),
-    db.Column('venue_id', db.Integer, db.ForeignKey('Venue.id'), primary_key=True),
-    db.Column('artisit_id', db.Integer, db.ForeignKey('Artist.id'), primary_key=True),
-    db.Column('date_time', db.DateTime,nullable=False),
-    db.Column('past_show',db.Boolean,default=False)
-)
-
-vgenres = db.Table('vgenres',
-    db.Column('venue_id', db.Integer, db.ForeignKey('Venue.id'),primary_key=True),
-    db.Column('genre_id', db.Integer, db.ForeignKey('Genres.id'),primary_key=True)
-
-)
-
-agenres = db.Table('agenres',
-    db.Column('artist_id', db.Integer, db.ForeignKey('Artist.id'),primary_key=True),
-    db.Column('genre_id', db.Integer, db.ForeignKey('Genres.id'),primary_key=True)
-
-)
-
-
 class Venue(db.Model):
     __tablename__ = 'Venue'
 
@@ -66,15 +45,11 @@ class Venue(db.Model):
     phone = db.Column(db.String(120))
     image_link = db.Column(db.String(500))
     facebook_link = db.Column(db.String(120))
+    genres = db.Column(db.ARRAY(db.String()))
     website = db.Column(db.String(120))
     seeking_talent = db.Column(db.Boolean,default=False)
     seeking_description = db.Column(db.String(500))
-    #past_shows = 
-    #upcoming_shows =
-    #past_shows_count =
-    #upcoming_show_count =
-    artist = db.relationship('Artist',secondary=shows,backref=db.backref('venues', lazy=True))
-    genres = db.relationship('Genres',secondary=vgenres,backref=db.backref('venues_g', lazy=True))
+    show = db.relationship('Show',backref='venue', lazy=True)
 
     # TODO: implement any missing fields, as a database migration using Flask-Migrate
 
@@ -91,14 +66,19 @@ class Artist(db.Model):
     facebook_link = db.Column(db.String(120))
     seeking_venue = db.Column(db.Boolean,default=True)
     seeking_description = db.Column(db.String(500))
-    genres = db.relationship('Genres',secondary=agenres,backref=db.backref('artists', lazy=True))
+    genres = db.Column(db.ARRAY(db.String()))
+    show = db.relationship('Show',backref='artist', lazy=True)
 
 
-class Genres(db.Model):
-  __tablename__ = 'Genres'
+
+
+
+class Show(db.Model):
+  __tablename__ = 'Shows'
   id = db.Column(db.Integer, primary_key=True)
-  name = db.Column(db.String)
-
+  venue_id = db.Column(db.Integer, db.foreignKey('Venue.id',nullable=False)
+  artist_id = db.Column(db.Integer, db.foreignKey('Artist.id',nullable=False)
+  start_time =db.Column(db.DateTime,nullable=False)
 
 
 
