@@ -400,7 +400,7 @@ def show_artist(artist_id):
     upcoming_count+=1
 
 
-  data_query = Venue.query.filter_by(id=artist_id).first()
+  data_query = Artist.query.filter_by(id=artist_id).first()
   print(data_query)
   print(upcoming_count)
 
