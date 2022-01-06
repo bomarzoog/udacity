@@ -587,15 +587,14 @@ def shows():
   data = []
 
   for i in data_query:
-
     data.append({
-     "venue_id": i.venue_id ,
-     "venue_name": i.venue.name,
-     "artist_id": i.id,
-     "artist_name": i.artist.name,
-     "artist_image_link": i.artist.image_link,
-     "start_time": i.start_time
-    })
+      "venue_id": i.venue_id ,
+      "venue_name": i.venue.name,
+      "artist_id": i.id,
+      "artist_name": i.artist.name,
+      "artist_image_link": i.artist.image_link,
+      "start_time": i.start_time
+      })
     
 
     print (data_query)
