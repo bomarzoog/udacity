@@ -597,6 +597,8 @@ def shows():
      "start_time": i.start_time
     })
     
+
+    print (data)
     return render_template('pages/shows.html', shows=data)
 
   # displays list of shows at /shows
