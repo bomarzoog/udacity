@@ -169,8 +169,12 @@ def search_venues():
 
 @app.route('/venues/<int:venue_id>')
 def show_venue(venue_id):
-  
+
+  past_show_query= Show.query.filter_by(venue_id=venue_id).filter(Show.start_time<datetime.now).all()
+
   data = Venue.query.filter_by(id=venue_id).all()
+
+
   
   return render_template('pages/show_venue.html', venue=data[0])
 
