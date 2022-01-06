@@ -203,14 +203,19 @@ def show_venue(venue_id):
   data = {
 
     "name": data_query.name
-    
-
-
-
-
-
-
-
+    "genres": data_query.genres
+    "city" : data_query.city
+    "state": data_query.state
+    "address": data_query.address
+    "phone": data_query.phone
+    "website": data_query.website
+    "facebook_link": data_query.facebook_link
+    "seeking_talent": data_query.seeking_talent
+    "seeking_description": data_query.seeking_description
+    "upcoming_shows": upcoming_shows 
+    "past_shows": past_shows 
+    "upcoming_shows_count": upcoming_count
+    "past_shows_count": past_count 
 
   }
 
