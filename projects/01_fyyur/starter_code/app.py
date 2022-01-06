@@ -191,7 +191,7 @@ def show_venue(venue_id):
        "artist_id": j.artist_id,
        "artist_name": j.artist.name,
        "artist_image_link": j.artist.image_link,
-       "start_time": string(j.start_time)
+       "start_time": format_datetime(j.start_time)
     })
     upcoming_count+=1
 
