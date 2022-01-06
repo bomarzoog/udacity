@@ -202,6 +202,9 @@ def show_venue(venue_id):
 
   data = {
 
+    "name": data_query.name
+    
+
 
 
 
