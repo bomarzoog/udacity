@@ -374,8 +374,8 @@ def search_artists():
 @app.route('/artists/<int:artist_id>')
 def show_artist(artist_id):
 
-  past_show_query = Artist.query.filter_by(artist_id=artist_id).filter(Artist.start_time < datetime.now()).all()
-  upcoming_show_query = Artist.query.filter_by(artis_id=artist_id).filter(Artist.start_time > datetime.now()).all()
+  past_show_query = Show.query.filter_by(artist_id=artist_id).filter(Show.start_time < datetime.now()).all()
+  upcoming_show_query = Show.query.filter_by(artis_id=artist_id).filter(Show.start_time > datetime.now()).all()
   past_shows = []
   past_count = 0
   upcoming_count = 0
