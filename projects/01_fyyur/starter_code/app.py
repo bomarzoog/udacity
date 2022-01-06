@@ -170,7 +170,8 @@ def search_venues():
 @app.route('/venues/<int:venue_id>')
 def show_venue(venue_id):
 
-  past_show_query= Show.query.filter_by(venue_id=venue_id).filter(Show.start_time<datetime.now).all()
+  past_show_query= Show.query.filter_by(venue_id=venue_id).filter(Show.start_time < datetime.now()).all()
+  print (past_show_query)
 
   data = Venue.query.filter_by(id=venue_id).all()
 
