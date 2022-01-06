@@ -409,7 +409,6 @@ def show_artist(artist_id):
     "genres": data_query.genres,
     "city" : data_query.city,
     "state": data_query.state,
-    "address": data_query.address,
     "phone": data_query.phone,
     "website": data_query.website,
     "facebook_link": data_query.facebook_link,
