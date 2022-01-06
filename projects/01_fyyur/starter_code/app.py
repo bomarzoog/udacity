@@ -598,7 +598,7 @@ def shows():
     })
     
 
-    print (data)
+    print (data_query)
     return render_template('pages/shows.html', shows=data)
 
   # displays list of shows at /shows
