@@ -583,7 +583,7 @@ def create_artist_submission():
 @app.route('/shows')
 def shows():
 
-  data_query = Show.distinct(artist_id).query.all()
+  data_query = Show.query.distinct(venue_id && artist_id && start_time).all()
   data = []
 
   for i in data_query:
