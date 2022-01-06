@@ -405,7 +405,7 @@ def show_artist(artist_id):
   print(upcoming_count)
 
   data = {
-    'id' : data_query.id
+    'id' : data_query.id,
     "name": data_query.name,
     "genres": data_query.genres,
     "city" : data_query.city,
