@@ -218,7 +218,7 @@ def show_venue(venue_id):
 
   }
 
-
+  print (data)
   
   return render_template('pages/show_venue.html', venue=data)
 
