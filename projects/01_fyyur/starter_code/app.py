@@ -170,8 +170,31 @@ def search_venues():
 @app.route('/venues/<int:venue_id>')
 def show_venue(venue_id):
 
-  past_show_query= Show.query.filter_by(venue_id=venue_id).filter(Show.start_time < datetime.now()).all()
-  print (past_show_query)
+  past_show_query = Show.query.filter_by(venue_id=venue_id).filter(Show.start_time < datetime.now()).all()
+  upcoming_show_query = Show.query.filter_by(venue_id=venue_id).filter(Show.start_time > datetime.now()).all()
+  past_shows = []
+  past_count = 0
+  upcoming_count = 0
+  upcoming_shows = []
+
+  for i in past_show_query:
+    past_shows.append ({
+       "artist_id": i.artist_id,
+       "artist_name": i.artist.name,
+       "artist_image_link": i.artist.image_link,
+       "start_time": i.start_time
+    })
+    past_count+=1
+
+  for j in upcoming_show_query:
+    past_shows.append ({
+       "artist_id": j.artist_id,
+       "artist_name": j.artist.name,
+       "artist_image_link": j.artist.image_link,
+       "start_time": j.start_time
+    })
+    upcoming_count+=1
+
 
   data = Venue.query.filter_by(id=venue_id).all()
 
