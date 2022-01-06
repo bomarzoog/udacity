@@ -393,8 +393,8 @@ def show_artist(artist_id):
   for j in upcoming_show_query:
     past_shows.append ({
        "artist_id": j.artist_id,
-       "artist_name": j.venue.name,
-       "artist_image_link": j.venue.image_link,
+       "venue_name": j.venue.name,
+       "venue_image_link": j.venue.image_link,
        "start_time": j.start_time
     })
     upcoming_count+=1
@@ -405,6 +405,7 @@ def show_artist(artist_id):
   print(upcoming_count)
 
   data = {
+    'id' : data_query.id
     "name": data_query.name,
     "genres": data_query.genres,
     "city" : data_query.city,
