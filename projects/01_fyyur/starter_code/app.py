@@ -583,7 +583,7 @@ def create_artist_submission():
 @app.route('/shows')
 def shows():
 
-  data_query = Show.query.all()
+  data_query = Show.join(Artist).query.all()
   data = []
 
   for i in data_query:
