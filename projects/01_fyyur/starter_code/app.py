@@ -172,8 +172,6 @@ def search_venues():
       "num_upcoming_shows": show_venue(i.id)["upcoming_shows_count"]
 
     })
-
-    print (type(show_venue(1)))
     
   response = { "count":len(venues),"data": data }
      
