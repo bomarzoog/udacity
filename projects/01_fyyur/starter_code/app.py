@@ -346,13 +346,13 @@ def show_venue(venue_id):
 
 @app.route('/venues/create', methods=['GET'])
 def create_venue_form():
-  form = VenueForm(csrf_enabled=False)
+  form = VenueForm()
   return render_template('forms/new_venue.html', form=form)
 
 @app.route('/venues/create', methods=['POST'])
 def create_venue_submission():
   try:
-    form = VenueForm(request.form)
+    form = VenueForm(request.form,csrf_enabled=False)
     print(form.validate_on_submit())
     flash(form.errors)
     if form.validate_on_submit():
