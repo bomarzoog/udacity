@@ -78,5 +78,29 @@
 <a href="/venues/{{ venue.id }}/edit"><button class="btn btn-primary btn-lg">Edit</button></a>
 <button class="btn btn-primary btn-lg delete">Delete</button>
 
+
+<script>
+	const deleted = document.querySelectorAll('.delete')
+
+	for (let i=0; i < deleted.length; i++){
+
+		const deleted_item = deleted[i];
+		deleted_item.onclick=function(e){
+
+			console.log(Event,e);
+
+
+		}
+
+
+
+	}
+
+
+
+
+
+</script>
+
 {% endblock %}
 
