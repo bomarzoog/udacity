@@ -363,9 +363,9 @@ def create_venue_submission():
         seeking_talent=form.seeking_talent.data,
         seeking_description=form.seeking_description.data
         )
-        db.session.add(venue)
-        db.session.commit()
-        flash('Venue ' + request.form['name'] + ' was successfully listed!')
+      db.session.add(venue)
+      db.session.commit()
+      flash('Venue ' + request.form['name'] + ' was successfully listed!')
   except:
     db.session.rollback()
     flash('An error occurred. Venue ' + data.name + ' could not be listed.')
