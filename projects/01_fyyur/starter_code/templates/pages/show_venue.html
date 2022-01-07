@@ -89,7 +89,7 @@
 		const deleted_item = deleted[i];
 		deleted_item.onclick=function(e){
 			console.log(Event,e);
-			const deleted_item_id = e.target.dataset['id']
+			const deleted_item_id = e.target.dataset['id'];
 			fetch('/venues/'+deleted_item_id, {
 				method: 'DELETE'
 			
