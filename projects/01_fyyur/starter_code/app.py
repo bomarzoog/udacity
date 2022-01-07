@@ -374,8 +374,6 @@ def create_venue_submission():
 
   finally:
     db.session.close()
-    flash('An error occurred. Venue ' + form.name.data + ' could not be listed.')
-
     return render_template('pages/home.html')
 
 
