@@ -173,7 +173,7 @@ def search_venues():
 
     })
 
-    print (show_venue(1))
+    print (type(show_venue(1)))
     
   response = { "count":len(venues),"data": data }
      
