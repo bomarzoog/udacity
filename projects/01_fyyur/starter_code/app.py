@@ -353,8 +353,7 @@ def create_venue_form():
 def create_venue_submission():
   try:
     form = VenueForm(request.form,csrf_enabled=False)
-    print(form.validate_on_submit())
-    flash(form.errors)
+  
     if form.validate_on_submit():
       venue = Venue(
         name=form.name.data,
@@ -369,8 +368,9 @@ def create_venue_submission():
         seeking_talent=form.seeking_talent.data,
         seeking_description=form.seeking_description.data
         )
+    else: 
+      flash(form.errors)
 
-  
     db.session.add(venue)
     db.session.commit()
     flash('Venue ' + request.form['name'] + ' was successfully listed!')
