@@ -363,6 +363,7 @@ def create_venue_submission():
         seeking_talent=form.seeking_talent.data,
         seeking_description=form.seeking_description.data
         )
+      print(venue)
       db.session.add(venue)
       db.session.commit()
       flash('Venue ' + request.form['name'] + ' was successfully listed!')
@@ -372,8 +373,7 @@ def create_venue_submission():
 
   finally:
     db.session.close()
-
-  return render_template('pages/home.html')
+    return render_template('pages/home.html')
 
 
 
