@@ -169,7 +169,7 @@ def search_venues():
     data.append({
       "id": i.id,
       "name": i.name,
-      "num_upcoming_shows": show_venue(i.id).upcoming_count
+      "num_upcoming_shows": show_venue(i.id)["upcoming_shows_count"]
 
     })
 
