@@ -407,7 +407,7 @@ def delete_venue(venue_id):
     venue = Venue.query.get(venue_id)
     db.session.delete(venue)
     db.session.commit()
-     flash('Venue ' + venue_id + ' was successfully deleted!')
+    flash('Venue ' + venue_id + ' was successfully deleted!')
 
   except:
     db.session.rollback()
