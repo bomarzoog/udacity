@@ -158,11 +158,13 @@ def venues():
 @app.route('/venues/search', methods=['POST'])
 def search_venues():
   
-  form = VenueForm()
-  venues =[]
-  data =[]
-  if form.validate_on_submit():
-    venues = Venue.query.filter(Venue.name.like('%'+ form.name.data+'%')).all()
+  #form = VenueForm()
+  #venues =[]
+  #data =[]
+  #if form.validate_on_submit():
+
+  search = request.form.get('search_term', '')
+  venues = Venue.query.filter(Venue.name.like('%'+search+'%')).all()
   
   for i in venues:
     data.append({
