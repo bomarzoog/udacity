@@ -165,10 +165,7 @@ def search_venues():
 
   search_term = request.form.get('search_term', '')
   search =  "%{}%".format(search_term)
-  venues = Venue.query.filter(Venue.name.like(search)).all()
-
-  print(search)
-  print(venues)
+  venues = Venue.query.filter(Venue.name.ilike(search)).all()
   
   for i in venues:
     data.append({
