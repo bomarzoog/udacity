@@ -163,9 +163,9 @@ def search_venues():
   data =[]
   #if form.validate_on_submit():
 
-  search = request.form.get('search_term', '')
-  search = search.lower()
-  venues = Venue.query.filter(Venue.name.like('%'+search+'%')).all()
+  search_term = request.form.get('search_term', '')
+  search =  "%{}%".format(search_term)
+  venues = Venue.query.filter(Venue.name.like(search)).all()
 
   print(search)
   print(venues)
