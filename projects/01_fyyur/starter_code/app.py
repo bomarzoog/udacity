@@ -351,7 +351,7 @@ def create_venue_submission():
     form = VenueForm()
     if form.validate_on_submit():
       venue = Venue(
-        name=form.name.data, 
+        name=form.name.data,
         city=form.city.data,
         state=form.state.data,
         address=form.address.data,
@@ -363,6 +363,7 @@ def create_venue_submission():
         seeking_talent=form.seeking_talent.data,
         seeking_description=form.seeking_description.data
         )
+      
       print(form.name.data)
       db.session.add(venue)
       db.session.commit()
@@ -373,6 +374,8 @@ def create_venue_submission():
 
   finally:
     db.session.close()
+    flash('An error occurred. Venue ' + data.name + ' could not be listed.')
+
     return render_template('pages/home.html')
 
 
