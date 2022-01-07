@@ -160,7 +160,7 @@ def search_venues():
   
   #form = VenueForm()
   #venues =[]
-  #data =[]
+  data =[]
   #if form.validate_on_submit():
 
   search = request.form.get('search_term', '')
