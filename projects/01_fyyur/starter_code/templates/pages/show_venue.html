@@ -80,18 +80,29 @@
 
 
 <script>
+
+	
 	const deleted = document.querySelectorAll('.delete')
 
 	for (let i=0; i < deleted.length; i++){
 
 		const deleted_item = deleted[i];
 		deleted_item.onclick=function(e){
-
 			console.log(Event,e);
+			const deleted_item_id = e.target.dataset['id']
+			fetch('/venues/'+deleted_item_id, {
+				method: 'DELETE'
+			
+			})
+			.then(function(){
+				document.getElementById('error').className='hidden';
+			})
+			.catch(function() {
+				document.getElementById('error').className='';
+			})
 
 
 		}
-
 
 
 	}

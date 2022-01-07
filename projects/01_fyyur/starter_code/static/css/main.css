@@ -157,6 +157,9 @@ p > i {
 .genres {
   margin-bottom: 15px;
 }
+.hidden {
+  display: none;
+}
 span.genre {
   display: inline-block;
   font-family: monospace;
