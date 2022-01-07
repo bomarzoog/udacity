@@ -370,11 +370,11 @@ def create_venue_submission():
       flash('Venue ' + request.form['name'] + ' was successfully listed!')
   except:
     db.session.rollback()
-    flash('An error occurred. Venue ' + form.data.name + ' could not be listed.')
+    flash('An error occurred. Venue ' + form.name.data + ' could not be listed.')
 
   finally:
     db.session.close()
-    flash('An error occurred. Venue ' + form.data.name + ' could not be listed.')
+    flash('An error occurred. Venue ' + form.name.data + ' could not be listed.')
 
     return render_template('pages/home.html')
 
