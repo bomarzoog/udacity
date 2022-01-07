@@ -30,6 +30,8 @@ migrate = Migrate(app,db)
 app.config['SQLALCHEMY_DATABASE_URI']= 'postgresql://postgres:abc@127.0.0.1:5432/fyyur_db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
+app.config['SECRET_KEY'] = "Zengo"
+
 #----------------------------------------------------------------------------#
 # Models.
 #----------------------------------------------------------------------------#
