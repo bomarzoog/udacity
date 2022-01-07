@@ -414,7 +414,7 @@ def delete_venue(venue_id):
     flash('An error occurred. Venue ' + venue_id + ' could not be deleted.')
   finally:
     db.session.close()
-    return render_template('pages/home.html')
+    return none
 
   
 
