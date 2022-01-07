@@ -13,6 +13,8 @@ from logging import Formatter, FileHandler
 from flask_wtf import Form
 from forms import *
 from flask_migrate import Migrate
+import os
+
 
 #----------------------------------------------------------------------------#
 # App Config.
@@ -30,7 +32,7 @@ migrate = Migrate(app,db)
 app.config['SQLALCHEMY_DATABASE_URI']= 'postgresql://postgres:abc@127.0.0.1:5432/fyyur_db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-app.config['SECRET_KEY'] = "Zengo"
+app.secret_key = os.urandom(32)
 
 #----------------------------------------------------------------------------#
 # Models.
