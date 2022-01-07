@@ -371,6 +371,7 @@ def create_venue_submission():
     else: 
       flash(form.errors)
 
+    print (venue)
     db.session.add(venue)
     db.session.commit()
     flash('Venue ' + request.form['name'] + ' was successfully listed!')
