@@ -659,6 +659,8 @@ def edit_artist_submission(artist_id):
       artist.website=form.website_link.data
       artist.seeking_venue=form.seeking_venue.data
       artist.seeking_description=form.seeking_description.data
+
+      print (artist.state)
     
     else: 
       flash(form.errors)
