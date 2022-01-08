@@ -813,6 +813,8 @@ def create_artist_submission():
   except:
     db.session.rollback()
     flash('An error occurred. Artist ' + form.name.data + ' could not be listed.')
+    print(sys.exc_info())
+
 
   finally:
     db.session.close()
