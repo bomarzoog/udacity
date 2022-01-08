@@ -663,7 +663,7 @@ def edit_artist_submission(artist_id):
     else: 
       flash(form.errors)
 
-    db.session.add(artist)
+    #db.session.add(artist)
     db.session.commit()
     flash('Artist ' + request.form['name'] + ' was successfully listed!')
   except:
