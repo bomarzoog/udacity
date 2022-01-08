@@ -788,8 +788,7 @@ def create_artist_form():
 
 @app.route('/artists/create', methods=['POST'])
 def create_artist_submission():
-
- try:
+  try:
     form = ArtistForm(request.form,csrf_enabled=False)
   
     if form.validate_on_submit():
