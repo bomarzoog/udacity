@@ -921,7 +921,7 @@ def create_show_submission():
     db.session.rollback()
     flash('An error occurred. show could not be listed.')
     error = sys.exc_info()
-    flash(error[2])
+    flash(error[1])
 
   finally:
     db.session.close()
