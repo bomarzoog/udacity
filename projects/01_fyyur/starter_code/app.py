@@ -644,6 +644,7 @@ def edit_artist_submission(artist_id):
   try:
     form = ArtistForm(request.form,csrf_enabled=False)
     artist =Artist.query.get(artist_id)
+    print (artist)
   
     if form.validate_on_submit():
       
