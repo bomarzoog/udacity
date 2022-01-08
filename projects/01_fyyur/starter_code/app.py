@@ -14,6 +14,8 @@ from flask_wtf import Form
 from forms import *
 from flask_migrate import Migrate
 import os
+import sys
+
 
 
 #----------------------------------------------------------------------------#
@@ -671,6 +673,7 @@ def edit_artist_submission(artist_id):
   except:
     db.session.rollback()
     flash('An error occurred. Artist ' + form.name.data + ' could not be listed.')
+    print(sys.exc_info())
 
   finally:
     db.session.close()
