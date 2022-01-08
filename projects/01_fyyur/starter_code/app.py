@@ -710,7 +710,7 @@ def edit_venue(venue_id):
     "phone": form.phone.data,
     "website": form.website_link.data,
     "facebook_link": form.facebook_link.data,
-    "seeking_venue": form.seeking_venue.data,
+    "seeking_talent": form.seeking_talent.data,
     "seeking_description": form.seeking_description.data,
     "image_link": form.image_link.data
   }
