@@ -653,7 +653,6 @@ def edit_artist_submission(artist_id):
       artist.name=form.name.data
       artist.city=form.city.data
       artist.state=form.state.data
-      artist.address=form.address.data
       artist.phone=form.phone.data
       artist.image_link=form.image_link.data
       artist.genres=form.genres.data
