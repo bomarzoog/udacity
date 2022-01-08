@@ -902,8 +902,7 @@ def create_shows():
 
 @app.route('/shows/create', methods=['POST'])
 def create_show_submission():
-
-try:
+  try:
     form = ShowForm(request.form,csrf_enabled=False)
   
     if form.validate_on_submit():
