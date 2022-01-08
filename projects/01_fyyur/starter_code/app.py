@@ -701,7 +701,7 @@ def edit_venue(venue_id):
  
 
   venue = {
-    "id": artist_id,
+    "id": venue_id,
     "name": form.name.data,
     "genres": form.genres.data,
     "city": form.city.data,
