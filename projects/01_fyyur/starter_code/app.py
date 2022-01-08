@@ -691,7 +691,7 @@ def edit_venue(venue_id):
   form.image_link.data = data_query.image_link
   form.genres.data = data_query.genres
   form.city.data = data_query.city
-  form.address.data = data_query.data
+  form.address.data = data_query.address.data
   form.state.data = data_query.state
   form.phone.data = data_query.phone
   form.website_link.data = data_query.website
