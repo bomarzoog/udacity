@@ -453,7 +453,7 @@ def search_artists():
       "name": i.name,
     })
     
-  response = { "count":len(venues),"data": data }
+  response = { "count":len(artisits),"data": data }
   return render_template('pages/search_artists.html', results=response, search_term=request.form.get('search_term', ''))
 
   # TODO: implement search on artists with partial string search. Ensure it is case-insensitive.
