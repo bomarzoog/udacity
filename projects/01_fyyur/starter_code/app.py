@@ -922,7 +922,7 @@ def create_show_submission():
     flash('An error occurred. show could not be listed.')
     error = sys.exc_info()
     
-    flash(string(error[1]))
+    flash(str(error[1]))
 
   finally:
     db.session.close()
