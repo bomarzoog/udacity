@@ -807,7 +807,7 @@ def create_artist_submission():
     else: 
       flash(form.errors)
 
-    db.session.add(venue)
+    db.session.add(artist)
     db.session.commit()
     flash('Artist ' + request.form['name'] + ' was successfully listed!')
   except:
