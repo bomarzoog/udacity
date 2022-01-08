@@ -368,7 +368,6 @@ def create_venue_submission():
     else: 
       flash(form.errors)
 
-    print (venue)
     db.session.add(venue)
     db.session.commit()
     flash('Venue ' + request.form['name'] + ' was successfully listed!')
@@ -633,10 +632,6 @@ def edit_artist(artist_id):
     "image_link": form.image_link.data
   }
 
-
-
-
-
   
   return render_template('forms/edit_artist.html', form=form, artist=artist)
 
@@ -645,10 +640,41 @@ def edit_artist(artist_id):
 
 @app.route('/artists/<int:artist_id>/edit', methods=['POST'])
 def edit_artist_submission(artist_id):
+
+  try:
+    form = ArtistForm(request.form,csrf_enabled=False)
+  
+    if form.validate_on_submit():
+      artisit = Artist(
+        name=form.name.data,
+        city=form.city.data,
+        state=form.state.data,
+        address=form.address.data,
+        phone=form.phone.data,
+        image_link=form.image_link.data,
+        genres=form.genres.data,
+        facebook_link=form.facebook_link.data,
+        website=form.website_link.data,
+        seeking_venue=form.seeking_venue.data,
+        seeking_description=form.seeking_description.data
+        )
+    else: 
+      flash(form.errors)
+
+    db.session.add(artist)
+    db.session.commit()
+    flash('Artist ' + request.form['name'] + ' was successfully listed!')
+  except:
+    db.session.rollback()
+    flash('An error occurred. Artist ' + form.name.data + ' could not be listed.')
+
+  finally:
+    db.session.close()
+    return redirect(url_for('show_artist', artist_id=artist_id))
+
   # TODO: take values from the form submitted, and update existing
   # artist record with ID <artist_id> using the new attributes
 
-  return redirect(url_for('show_artist', artist_id=artist_id))
 
 @app.route('/venues/<int:venue_id>/edit', methods=['GET'])
 def edit_venue(venue_id):
