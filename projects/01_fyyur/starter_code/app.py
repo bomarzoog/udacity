@@ -602,7 +602,7 @@ def show_artist(artist_id):
 #  ----------------------------------------------------------------
 @app.route('/artists/<int:artist_id>/edit', methods=['GET'])
 def edit_artist(artist_id):
-  form = ArtistForm()
+  form = ArtistForm(request.form,csrf_enabled=False)
   artist={
     "id": artist_id,
     "name": form.name.data,
