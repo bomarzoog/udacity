@@ -922,7 +922,7 @@ def create_show_submission():
     flash('An error occurred. show could not be listed.')
     error = sys.exc_info()
     error = str(error[1])
-    error_detail =error[error.find('DETAIL:'):error.find('.')]
+    error_detail =error[error.find('DETAIL:'):error.find('\n')]
     print (error_detail)
     
     flash(error_detail)
