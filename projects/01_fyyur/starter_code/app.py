@@ -602,7 +602,23 @@ def show_artist(artist_id):
 #  ----------------------------------------------------------------
 @app.route('/artists/<int:artist_id>/edit', methods=['GET'])
 def edit_artist(artist_id):
+  
+  data_query = Artist.query.filter_by(id=artist_id).first()
   form = ArtistForm(request.form,csrf_enabled=False)
+
+  
+  form.name.data.name = data_query.name
+  form.image_link.data = data_query.image_link
+  form.genres.data = data_query.genres
+  form.city.data = data_query.city
+  form.state.data = data_query.state
+  form.phone.data = data_query.phone
+  form.website_link.data = data_query.website
+  form.facebook_link.data = data_query.facebook_link
+  form.seeking_venue.data = data_query.seeking_venue
+  form.seeking_description.data = data_query.seeking_description
+ 
+
   artist={
     "id": artist_id,
     "name": form.name.data,
@@ -616,6 +632,11 @@ def edit_artist(artist_id):
     "seeking_description": form.seeking_description.data,
     "image_link": form.image_link.data
   }
+
+
+
+
+
   
   return render_template('forms/edit_artist.html', form=form, artist=artist)
 
