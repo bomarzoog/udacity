@@ -607,7 +607,7 @@ def edit_artist(artist_id):
   form = ArtistForm(request.form,csrf_enabled=False)
 
   
-  form.name.data.name = data_query.name
+  form.name.data = data_query.name
   form.image_link.data = data_query.image_link
   form.genres.data = data_query.genres
   form.city.data = data_query.city
