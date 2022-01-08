@@ -925,7 +925,7 @@ def create_show_submission():
     error_detail =error[error.find('DETAIL:'):error.find('\n')]
     print (error_detail)
     
-    flash(error_detail)
+    flash(error)
 
   finally:
     db.session.close()
