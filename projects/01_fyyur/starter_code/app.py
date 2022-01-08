@@ -643,21 +643,22 @@ def edit_artist_submission(artist_id):
 
   try:
     form = ArtistForm(request.form,csrf_enabled=False)
+    artist =Artis.query.get(artist_id)
   
     if form.validate_on_submit():
-      artisit = Artist(
-        name=form.name.data,
-        city=form.city.data,
-        state=form.state.data,
-        address=form.address.data,
-        phone=form.phone.data,
-        image_link=form.image_link.data,
-        genres=form.genres.data,
-        facebook_link=form.facebook_link.data,
-        website=form.website_link.data,
-        seeking_venue=form.seeking_venue.data,
-        seeking_description=form.seeking_description.data
-        )
+      
+      artist.name=form.name.data
+      artist.city=form.city.data
+      artist.state=form.state.data
+      artist.address=form.address.data
+      artist.phone=form.phone.data
+      artist.image_link=form.image_link.data
+      artist.genres=form.genres.data
+      artist.facebook_link=form.facebook_link.data
+      artist.website=form.website_link.data
+      artist.seeking_venue=form.seeking_venue.data
+      artist.seeking_description=form.seeking_description.data
+    
     else: 
       flash(form.errors)
 
