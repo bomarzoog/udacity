@@ -919,9 +919,8 @@ def create_show_submission():
     flash('Show was successfully listed!')
   except:
     db.session.rollback()
-    flash('An error occurred. Artist ' + form.name.data + ' could not be listed.')
+    flash('An error occurred. show could not be listed.')
     print(sys.exc_info())
-
 
   finally:
     db.session.close()
@@ -937,7 +936,6 @@ def create_show_submission():
   # TODO: on unsuccessful db insert, flash an error instead.
   # e.g., flash('An error occurred. Show could not be listed.')
   # see: http://flask.pocoo.org/docs/1.0/patterns/flashing/
-  return render_template('pages/home.html')
 
 @app.errorhandler(404)
 def not_found_error(error):
