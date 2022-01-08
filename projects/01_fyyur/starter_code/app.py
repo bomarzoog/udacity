@@ -644,7 +644,7 @@ def edit_artist_submission(artist_id):
   try:
     form = ArtistForm(request.form,csrf_enabled=False)
     artist =Artist.query.get(artist_id)
-    print (artist)
+    print (form.name.data)
   
     if form.validate_on_submit():
       
@@ -665,7 +665,7 @@ def edit_artist_submission(artist_id):
     else: 
       flash(form.errors)
 
-    #db.session.add(artist)
+    db.session.add(artist)
     db.session.commit()
     flash('Artist ' + request.form['name'] + ' was successfully listed!')
   except:
