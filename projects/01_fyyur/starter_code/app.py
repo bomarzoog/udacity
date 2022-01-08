@@ -706,7 +706,7 @@ def edit_venue(venue_id):
     "genres": form.genres.data,
     "city": form.city.data,
     "state": form.state.data,
-    "address": form.address.data
+    "address": form.address.data,
     "phone": form.phone.data,
     "website": form.website_link.data,
     "facebook_link": form.facebook_link.data,
