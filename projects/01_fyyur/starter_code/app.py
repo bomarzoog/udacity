@@ -162,10 +162,7 @@ def venues():
 @app.route('/venues/search', methods=['POST'])
 def search_venues():
   
-  #form = VenueForm()
-  #venues =[]
   data =[]
-  #if form.validate_on_submit():
 
   search_term = request.form.get('search_term', '')
   search =  "%{}%".format(search_term)
@@ -386,10 +383,6 @@ def create_venue_submission():
 
 
 
-
-
-
-
   # TODO: insert form data as a new Venue record in the db, instead
   # TODO: modify data to be the data object returned from db insertion
 
@@ -447,18 +440,33 @@ def artists():
 
 @app.route('/artists/search', methods=['POST'])
 def search_artists():
+  
+  data =[]
+
+  search_term = request.form.get('search_term', '')
+  search =  "%{}%".format(search_term)
+  artisits = Artist.query.filter(Artist.name.ilike(search)).all()
+  
+  for i in artisits:
+    data.append({
+      "id": i.id,
+      "name": i.name,
+    })
+    
+  response = { "count":len(venues),"data": data }
+  return render_template('pages/search_artists.html', results=response, search_term=request.form.get('search_term', ''))
+
   # TODO: implement search on artists with partial string search. Ensure it is case-insensitive.
   # seach for "A" should return "Guns N Petals", "Matt Quevado", and "The Wild Sax Band".
   # search for "band" should return "The Wild Sax Band".
-  response={
-    "count": 1,
-    "data": [{
-      "id": 4,
-      "name": "Guns N Petals",
-      "num_upcoming_shows": 0,
-    }]
-  }
-  return render_template('pages/search_artists.html', results=response, search_term=request.form.get('search_term', ''))
+  #response={
+  #  "count": 1,
+  #  "data": [{
+  #    "id": 4,
+  #    "name": "Guns N Petals",
+  #    "num_upcoming_shows": 0,
+  #  }]
+  #}
 
 
 @app.route('/artists/<int:artist_id>')
