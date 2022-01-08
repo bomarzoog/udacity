@@ -605,7 +605,7 @@ def edit_artist(artist_id):
   form = ArtistForm()
   artist={
     "id": 4,
-    "name": form.name.data
+    "name": form.name.data,
     "genres": form.genres.data,
     "city": form.city.data,
     "state": form.state.data,
