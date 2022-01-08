@@ -604,7 +604,7 @@ def show_artist(artist_id):
 def edit_artist(artist_id):
   form = ArtistForm()
   artist={
-    "id": 4,
+    "id": form.id.data,
     "name": form.name.data,
     "genres": form.genres.data,
     "city": form.city.data,
