@@ -616,8 +616,11 @@ def edit_artist(artist_id):
     "seeking_description": form.seeking_description.data,
     "image_link": form.image_link.data
   }
-  # TODO: populate form with fields from artist with ID <artist_id>
+  
   return render_template('forms/edit_artist.html', form=form, artist=artist)
+
+  # TODO: populate form with fields from artist with ID <artist_id>
+
 
 @app.route('/artists/<int:artist_id>/edit', methods=['POST'])
 def edit_artist_submission(artist_id):
