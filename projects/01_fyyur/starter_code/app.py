@@ -134,8 +134,6 @@ def show_venue(venue_id):
 
 
   data_query = Venue.query.filter_by(id=venue_id).first()
-  print(data_query)
-  print(upcoming_count)
 
   data = {
     "id": data_query.id,
@@ -258,8 +256,8 @@ def search_artists():
 @app.route('/artists/<int:artist_id>')
 def show_artist(artist_id):
 
-  past_show_query = Show.query.filter_by(artist_id=artist_id).filter(Show.start_time < datetime.now()).all()
-  upcoming_show_query = Show.query.filter_by(artist_id=artist_id).filter(Show.start_time > datetime.now()).all()
+  past_show_query = Show.query.join(Venue).filter(Show.artist_id==artist_id).filter(Show.start_time < datetime.now()).all()
+  upcoming_show_query = Show.query.join(Venue).filter(Show.artist_id==artist_id).filter(Show.start_time > datetime.now()).all()
   past_shows = []
   past_count = 0
   upcoming_count = 0
@@ -285,8 +283,7 @@ def show_artist(artist_id):
 
 
   data_query = Artist.query.filter_by(id=artist_id).first()
-  print(data_query)
-  print(upcoming_count)
+
 
   data = {
     'id' : data_query.id,
