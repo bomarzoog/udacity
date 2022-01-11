@@ -107,8 +107,8 @@ def show_venue(venue_id):
   #past_show_query = Show.query.distinct(Show.start_time).filter_by(venue_id=venue_id).filter(Show.start_time < datetime.now()).all()
   #upcoming_show_query = Show.query.distinct(Show.start_time).filter_by(venue_id=venue_id).filter(Show.start_time > datetime.now()).all()
 
-  past_show_query = Show.query.join(Artist).filter(Show.venue_id==venue_id).filter(Show.start_time < datetime.now()).all()
-  upcoming_show_query = Show.query.join(Artist).filter(Show.venue_id==venue_id).filter(Show.start_time > datetime.now()).all()
+  past_show_query = Show.query.join(Artist).filter(Show.venue_id==venue_id).filter(Show.start_time < datetime.now()).distinct(Show.start_time.all()
+  upcoming_show_query = Show.query.join(Artist).filter(Show.venue_id==venue_id).filter(Show.start_time > datetime.now()).distinct(Show.start_time.all()
   past_shows = []
   past_count = 0
   upcoming_count = 0
