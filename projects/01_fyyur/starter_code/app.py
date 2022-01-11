@@ -516,14 +516,14 @@ def create_artist_submission():
 def shows():
 
   #data_query = Show.query.distinct(Show.venue_id).distinct(Show.artist_id).distinct(Show.start_time).all()
-  data_query = Show.query.distinct(Show.start_time).all()
+  data_query = Show.query.join(Artist).join(Venue).distinct(Show.start_time).all()
   data = []
 
   for i in data_query:
     data.append({
       "venue_id": i.venue_id ,
       "venue_name": i.venue.name,
-      "artist_id": i.id,
+      "artist_id": i.artist_id,
       "artist_name": i.artist.name,
       "artist_image_link": i.artist.image_link,
       "start_time": i.start_time
