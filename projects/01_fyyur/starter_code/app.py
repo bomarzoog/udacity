@@ -286,7 +286,7 @@ def show_artist(artist_id):
     past_count+=1
 
   for j in upcoming_show_query:
-    past_shows.append ({
+    upcoming_shows.append ({
        "artist_id": j.artist_id,
        "venue_name": j.venue.name,
        "venue_image_link": j.venue.image_link,
