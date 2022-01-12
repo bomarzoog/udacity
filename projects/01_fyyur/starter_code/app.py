@@ -24,6 +24,9 @@ from flask_migrate import Migrate
 import os
 import sys
 
+from models import *
+
+
 
 
 #----------------------------------------------------------------------------#
@@ -41,7 +44,9 @@ migrate = Migrate(app,db)
 # Models.
 #----------------------------------------------------------------------------#
 
-from models import *
+# Imported from models.py
+
+
 
 #----------------------------------------------------------------------------#
 # Filters.
@@ -132,7 +137,7 @@ def show_venue(venue_id):
     past_count+=1
 
   for j in upcoming_show_query:
-    past_shows.append ({
+    upcoming_shows.append ({
        "artist_id": j.artist_id,
        "artist_name": j.artist.name,
        "artist_image_link": j.artist.image_link,
