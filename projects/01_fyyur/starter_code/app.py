@@ -264,7 +264,7 @@ def show_artist(artist_id):
     else:
         upcoming_shows.append(temp_show)
 
-  data = vars(venue)
+  data = vars(artist)
 
   data['past_shows'] = past_shows
   data['upcoming_shows'] = upcoming_shows
