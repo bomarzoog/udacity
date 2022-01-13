@@ -245,12 +245,8 @@ def show_artist(artist_id):
 
   artist = Artist.query.get_or_404(artist_id)
 
-
-  #past_show_query = Show.query.join(Venue).filter(Show.artist_id==artist_id).filter(Show.start_time < datetime.now()).distinct(Show.start_time).all()
-  #upcoming_show_query = Show.query.join(Venue).filter(Show.artist_id==artist_id).filter(Show.start_time > datetime.now()).distinct(Show.start_time).all()
   past_shows = []
-  #past_count = 0
-  #upcoming_count = 0
+
   upcoming_shows = []
   for show in artist.shows:
     temp_show = {
@@ -275,48 +271,6 @@ def show_artist(artist_id):
 
 
 
-#
-  #for i in past_show_query:
-  #  past_shows.append ({
-  #     "artist_id": i.artist_id,
-  #     "venue_name": i.venue.name,
-  #     "venue_image_link": i.venue.image_link,
-  #     "start_time": i.start_time
-  #  })
-  #  past_count+=1
-#
-  #for j in upcoming_show_query:
-  #  upcoming_shows.append ({
-  #     "artist_id": j.artist_id,
-  #     "venue_name": j.venue.name,
-  #     "venue_image_link": j.venue.image_link,
-  #     "start_time": j.start_time
-  #  })
-  #  upcoming_count+=1
-#
-#
-  #data_query = Artist.query.filter_by(id=artist_id).first()
-#
-#
-  #data = {
-  #  'id' : data_query.id,
-  #  "name": data_query.name,
-  #  'image_link' : data_query.image_link,
-  #  "genres": data_query.genres,
-  #  "city" : data_query.city,
-  #  "state": data_query.state,
-  #  "phone": data_query.phone,
-  #  "website": data_query.website,
-  #  "facebook_link": data_query.facebook_link,
-  #  "seeking_venue": data_query.seeking_venue,
-  #  "seeking_description": data_query.seeking_description,
-  #  "upcoming_shows": upcoming_shows, 
-  #  "past_shows": past_shows, 
-  #  "upcoming_shows_count": upcoming_count,
-  #  "past_shows_count": past_count 
-#
-  #}
-  #
   return render_template('pages/show_artist.html', artist=data)
 
 #  ----------------------------------------------------------------
