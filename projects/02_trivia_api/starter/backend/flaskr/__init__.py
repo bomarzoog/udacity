@@ -57,6 +57,7 @@ def create_app(test_config=None):
       current_questions = paginate_questions(request, selection)
       print(selection)
       print(current_questions)
+      categories =  retrive_categories()
 
       if len(current_questions) == 0:
         abort(404)
@@ -65,7 +66,7 @@ def create_app(test_config=None):
         {
           'questions' : current_questions,
           'totalQuestions': len(selection),
-          retrive_categories(),
+          'categories': categories,
           'currentCategory': 
 
         
