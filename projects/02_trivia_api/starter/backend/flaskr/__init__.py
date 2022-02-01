@@ -55,8 +55,6 @@ def create_app(test_config=None):
     def retrive_questions():
       selection = Question.query.order_by(Question.id).all()
       current_questions = paginate_questions(request, selection)
-      print(selection)
-      print(current_questions)
       categories =  retrive_categories()
       print(categories)
 
