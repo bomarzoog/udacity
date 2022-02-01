@@ -55,7 +55,7 @@ def create_app(test_config=None):
     def retrive_questions():
       selection = Question.query.order_by(Question.id).all()
       current_questions = paginate_questions(request, selection)
-      categories_selection =  Category.query.order_by(Category.id).all()
+      categories_selection =  Category.query.order_by(Category.id).distinct.all()
       categories = {category.id:category.type for category in categories_selection}
       current_categories = [categories[id] for id in [question["category"] for question in current_questions ]]
       print (current_categories)
