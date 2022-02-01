@@ -12,18 +12,8 @@ def create_app(test_config=None):
   # create and configure the app
     app = Flask(__name__)
     setup_db(app)
-
-  '''
-  @TODO: Set up CORS. Allow '*' for origins. Delete the sample route after completing the TODOs
-  '''
-
     CORS(app)
-  
-  
-  '''
-  @TODO: Use the after_request decorator to set Access-Control-Allow
-  '''
-
+    
     @app.after_request
     def after_request(response):
         response.headers.add('Access-Control-Allow-Origin', '*')
@@ -31,19 +21,15 @@ def create_app(test_config=None):
 
 
 
-  '''
-  @TODO: 
-  Create an endpoint to handle GET requests 
-  for all available categories.
-  '''
+
+
 
     @app.route('/categories')
     def retrive_categories():
         categories = {}
         selection = Category.query.order_by(Category.id).all()
         for category in selection:
-          categories[category.id] = category.type
-
+          categories[category.id] = category.typex
         
         if len(categories == 0):
           abort(404)
@@ -129,7 +115,6 @@ def create_app(test_config=None):
   Create error handlers for all expected errors 
   including 404 and 422. 
   '''
-  
-  return app
+    return app
 
     
