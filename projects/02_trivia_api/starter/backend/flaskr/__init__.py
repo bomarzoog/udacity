@@ -38,13 +38,13 @@ def create_app(test_config=None):
     def retrive_categories():
         categories = {}
         selection = Category.query.order_by(Category.id).all()
-        print(selection)
+      
         for category in selection:
           categories[category.id] = category.type
         
         if len(categories) == 0:
           abort(404)
-        print(categories)
+ 
         return jsonify(
           {
             "categories" : categories
