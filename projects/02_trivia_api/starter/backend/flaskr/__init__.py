@@ -29,7 +29,7 @@ def create_app(test_config=None):
         categories = {}
         selection = Category.query.order_by(Category.id).all()
         for category in selection:
-          categories[category.id] = category.typex
+          categories[category.id] = category.type
         
         if len(categories == 0):
           abort(404)
