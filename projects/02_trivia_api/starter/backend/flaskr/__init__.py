@@ -53,12 +53,14 @@ def create_app(test_config=None):
     
     @app.route('/questions')
     def retrive_questions():
+      
       selection = Question.query.order_by(Question.id).all()
       current_questions = paginate_questions(request, selection)
       categories_selection =  Category.query.order_by(Category.type).distinct()
-      categories = {category.id:category.type for category in categories_selection}
-      current_categories = [categories[id] for id in set([question["category"] for question in current_questions])]
-      print (current_categories)
+      all_categories = {category.id:category.type for category in categories_selection}
+      curr_categories = set([question["category"] for question in current_questions])
+      current_categories = [categories[id] for id in curr_categories ]
+  
 
       if len(current_questions) == 0:
         abort(404)
@@ -67,7 +69,7 @@ def create_app(test_config=None):
         {
           'questions' : current_questions,
           'totalQuestions': len(selection),
-          'categories': categories,
+          'categories': all_categories,
           'currentCategory':current_categories
 
         
