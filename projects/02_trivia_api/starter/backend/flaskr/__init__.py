@@ -58,7 +58,7 @@ def create_app(test_config=None):
       categories_selection =  Category.query.order_by(Category.id).all()
       categories = {category.id:category.type for category in categories_selection}
       current_categories = [categories[id] for id in [question["category"] for question in current_questions ]]
-      print (current_categories2)
+      print (current_categories)
 
       if len(current_questions) == 0:
         abort(404)
