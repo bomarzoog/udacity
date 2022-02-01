@@ -66,7 +66,7 @@ def create_app(test_config=None):
         {
           'questions' : current_questions,
           'totalQuestions': len(selection),
-          'categories': categories
+          'categories': categories,
           'currentCategory':'History'
 
         
