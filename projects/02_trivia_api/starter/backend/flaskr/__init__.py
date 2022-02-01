@@ -57,7 +57,7 @@ def create_app(test_config=None):
       current_questions = paginate_questions(request, selection)
       categories_selection =  Category.query.order_by(Category.id).all()
       categories = {category.id:category.type for category in categories_selection}
-      current_categories = [ "{}".format(question["category"]) for question in current_questions ]
+      current_categories = [ question["category"] for question in current_questions ]
       current_categories2 = [categories[id] for id in current_categories]
       print (current_categories2)
 
