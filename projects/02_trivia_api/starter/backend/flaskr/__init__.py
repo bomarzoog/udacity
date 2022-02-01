@@ -55,7 +55,8 @@ def create_app(test_config=None):
     def retrive_questions():
       selection = Question.query.order_by(Question.id).all()
       current_questions = paginate_questions(request, selection)
-      categories =  create_app.retrive_categories()
+      categories_selection =  Category.query.order_by(Category.id).all()
+      categories = {category.id:category.type for category in categories_selection}
       print(categories)
 
       if len(current_questions) == 0:
@@ -65,6 +66,7 @@ def create_app(test_config=None):
         {
           'questions' : current_questions,
           'totalQuestions': len(selection),
+          'categories': categories
           'currentCategory':'History'
 
         
