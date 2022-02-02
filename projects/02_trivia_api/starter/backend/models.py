@@ -8,7 +8,6 @@ database_password = 'abc'
 database_user = 'postgres'
 #database_path = "postgres://{}/{}".format('localhost:5432', database_name)
 database_path = 'postgresql+psycopg2://{}:{}@{}/{}'.format(database_user, database_password, 'localhost:5432', database_name)
-SQLALCHEMY_ECHO = True
 
 db = SQLAlchemy()
 
@@ -19,6 +18,7 @@ setup_db(app)
 def setup_db(app, database_path=database_path):
     app.config["SQLALCHEMY_DATABASE_URI"] = database_path
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+    app.config["SQLALCHEMY_ECHO"] =True
     db.app = app
     db.init_app(app)
     db.create_all()
