@@ -8,6 +8,7 @@ database_password = 'abc'
 database_user = 'postgres'
 #database_path = "postgres://{}/{}".format('localhost:5432', database_name)
 database_path = 'postgresql+psycopg2://{}:{}@{}/{}'.format(database_user, database_password, 'localhost:5432', database_name)
+SQLALCHEMY_ECHO = True
 
 db = SQLAlchemy()
 
