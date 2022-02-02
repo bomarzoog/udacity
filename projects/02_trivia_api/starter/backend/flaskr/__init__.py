@@ -116,9 +116,7 @@ def create_app(test_config=None):
               {
 
                     "success": True,
-                    "created": question.id,
-                    "questions": current_questions,
-                    "total_questions": len(selection)
+                    "created": question.id
 
               }
             )
