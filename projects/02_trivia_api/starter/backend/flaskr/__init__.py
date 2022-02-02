@@ -107,7 +107,7 @@ def create_app(test_config=None):
         search_term = body.get("searchTerm")
 
         if search_term:
-            search_query = Question.query.ilike("%{}%".format(search_term)).all()
+            search_query = Question.query.filter(Question.question.ilike("%{}%".format(search_term))).all()
             found_questions = [question.format() for question in search_query]
             
             return jsonify(
