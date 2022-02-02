@@ -58,8 +58,8 @@ def create_app(test_config=None):
       curr_categories = set([question["category"] for question in current_questions])
       current_categories = [all_categories[id] for id in curr_categories ]
 
-      print ("current_questions" current_questions)
-      print ("curr_categories" curr_categories)
+      print ("current_questions",current_questions)
+      print ("curr_categories",curr_categories)
   
 
       if len(current_questions) == 0:
