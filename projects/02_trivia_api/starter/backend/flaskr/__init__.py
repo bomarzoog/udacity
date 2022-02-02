@@ -56,7 +56,7 @@ def create_app(test_config=None):
       categories_selection =  Category.query.order_by(Category.type).distinct()
       all_categories = {category.id:category.type for category in categories_selection}
       curr_categories = set([question["category"] for question in current_questions])
-      #current_categories = [all_categories[id] for id in curr_categories ]
+      current_categories = [all_categories[id] for id in curr_categories ]
 
       print ("current_questions",current_questions)
       print ("curr_categories",curr_categories)
@@ -70,7 +70,7 @@ def create_app(test_config=None):
           'questions' : current_questions,
           'total_questions': len(selection),
           'categories': all_categories,
-          #'currentCategory':current_categories
+          'currentCategory':current_categories
 
         
         }
