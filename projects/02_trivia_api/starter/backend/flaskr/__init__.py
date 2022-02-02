@@ -53,7 +53,7 @@ def create_app(test_config=None):
 
       selection = Question.query.order_by(Question.id).all()
       current_questions = paginate_questions(request, selection)
-      categories_selection =  Category.query.order_by(Category.type).distinct()
+      categories_selection =  Category.query.order_by(Category.type).all()
       all_categories = {category.id:category.type for category in categories_selection}
       curr_categories = set([question["category"] for question in current_questions])
       current_categories = [all_categories[id] for id in curr_categories ]
@@ -65,7 +65,7 @@ def create_app(test_config=None):
       return jsonify(
         {
           'questions' : current_questions,
-          'totalQuestions': len(selection),
+          'total_questions': len(selection),
           'categories': all_categories,
           'currentCategory':current_categories
 
