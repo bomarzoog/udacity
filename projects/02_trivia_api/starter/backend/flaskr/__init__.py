@@ -104,27 +104,39 @@ def create_app(test_config=None):
         new_answer = body.get("answer")
         new_category = body.get("category")
         new_difficulty = body.get("difficulty")
+        search_term = body.get("searchTerm")
 
-        try:
-            question = Question(question=new_question,answer=new_answer,difficulty=new_difficulty,category=new_category)
-            question.insert()
-
-            selection = Question.query.order_by(Question.id).all()
-            current_questions = paginate_questions(request, selection)
-
+        if search_term:
+            search_query = Question.query.ilike("%{}%".format(search_term)).all()
+            found_questions = [question.format() for question in search_query]
+            
             return jsonify(
               {
-
-                    "success": True,
-                    "created": question.id
-
+                "questions": found_questions
               }
             )
+        else:
+            try:
+                question = Question(question=new_question,answer=new_answer,difficulty=new_difficulty,category=new_category)
+                question.insert()
+
+                selection = Question.query.order_by(Question.id).all()
+                current_questions = paginate_questions(request, selection)
+
+                return jsonify(
+                  {
+
+                        "success": True,
+                        "created": question.id
+
+                  }
+                )
 
 
-        except:
-            abort(422)
+            except:
+                abort(422)
 
+ 
 
 
 
@@ -135,24 +147,6 @@ def create_app(test_config=None):
 
 
 
-    '''
-    @TODO: 
-    Create an endpoint to DELETE question using a question ID. 
-
-    TEST: When you click the trash icon next to a question, the question will be removed.
-    This removal will persist in the database and when you refresh the page. 
-    '''
-
-    '''
-    @TODO: 
-    Create an endpoint to POST a new question, 
-    which will require the question and answer text, 
-    category, and difficulty score.
-
-    TEST: When you submit a question on the "Add" tab, 
-    the form will clear and the question will appear at the end of the last page
-    of the questions list in the "List" tab.  
-    '''
 
     '''
     @TODO: 
