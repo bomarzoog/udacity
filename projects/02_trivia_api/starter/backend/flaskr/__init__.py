@@ -31,9 +31,6 @@ def create_app(test_config=None):
 
 
 
-
-
-
     @app.route('/categories')
     def retrive_categories():
         categories = {}
@@ -76,19 +73,68 @@ def create_app(test_config=None):
         }
       )
 
+    @app.route('/questions/<int:question_id>', methods=["DELETE"])
+    def delete_question(question_id):
+        try:
+            question = Question.query.filter(Question.id == question_id).one_or_none()
 
-    '''
-    @TODO: 
-    Create an endpoint to handle GET requests for questions, 
-    including pagination (every 10 questions). 
-    This endpoint should return a list of questions, 
-    number of total questions, current category, categories. 
+            if question is None:
+                abort(404)
+            
+            question.delete()
+            selection = Question.query.order_by(Question.id).all()
+            current_questions = paginate_questions(request, selection)
 
-    TEST: At this point, when you start the application
-    you should see questions and categories generated,
-    ten questions per page and pagination at the bottom of the screen for three pages.
-    Clicking on the page numbers should update the questions. 
-    '''
+            return jsonify (
+                {
+                    "success": True,
+                    "deleted": question_id,
+                    "questions": current_questions,
+                    "total_questions": len(selection)
+                }
+            
+            )
+        except:
+            abort(422)
+
+    @app.route('/questions', methods=["POST"])
+    def add_question():
+        body = request.get_json()
+        new_question = body.get("question")
+        new_answer = body.get("answer")
+        new_category = body.get("category")
+        new_difficulty = body.get("difficulty")
+
+        try:
+            question = Question(question=new_question,answer=new_answer,difficulty=new_difficulty,category=new_category)
+            question.insert()
+
+            selection = Question.query.order_by(Question.id).all()
+            current_questions = paginate_questions(request, selection)
+
+            return jsonify(
+              {
+
+                    "success": True,
+                    "created": question_id,
+                    "questions": current_questions,
+                    "total_questions": len(selection)
+
+              }
+            )
+
+
+        except:
+            abort(422)
+
+
+
+
+     
+
+
+
+
 
 
     '''
