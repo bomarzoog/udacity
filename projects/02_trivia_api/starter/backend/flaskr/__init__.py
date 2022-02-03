@@ -171,8 +171,8 @@ def create_app(test_config=None):
 
         questions = [question.format() for question in selection]
         random_question = random.choice(questions)
-        print("random id is : ",random_question['id'])
         print("presvious questions: ", previous_questions)
+        print("random id is : ",random_question['id'])
 
 
         if( random_question['id'] in previous_questions ):
