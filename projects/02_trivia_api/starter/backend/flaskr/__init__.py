@@ -139,6 +139,25 @@ def create_app(test_config=None):
             except:
                 abort(422)
 
+
+    @app.route('/categories/<int:category_id>/questions')
+    def retrive_questions_by_category(category_id):
+        selection = Question.query.filter(Question.category==category_id).all()
+        questions = [question.format() for question in selection]
+        currentCategory = Category.query.filter(Category.id==category_id).one_or_none()
+
+        if questions:
+            return jsonify(
+              {
+                "questions": questions,
+                "total_questions": len(questions),
+                "currentCategory": currentCategory.format()
+
+              }
+            )
+
+
+
  
 
 
@@ -147,20 +166,6 @@ def create_app(test_config=None):
 
 
 
-
-
-
-
-    '''
-    @TODO: 
-    Create a POST endpoint to get questions based on a search term. 
-    It should return any questions for whom the search term 
-    is a substring of the question. 
-
-    TEST: Search by any phrase. The questions list will update to include 
-    only question that include that string within their question. 
-    Try using the word "title" to start. 
-    '''
 
     '''
     @TODO: 
