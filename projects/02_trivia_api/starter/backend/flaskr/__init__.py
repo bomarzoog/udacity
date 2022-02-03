@@ -155,27 +155,36 @@ def create_app(test_config=None):
 
               }
             )
+    
+    @app.route('/quizzes', methods=[POST])
+    def play_quizzes():
 
+        body = request.get_json()
+        category = body.get("quiz_category")
+        previous_question = body.get("previous_questions")
+
+        if category[id] == 0:
+            selection = Question.query.all()
+        else:
+            selection = Question.query.filter(Question.category==category[id]).all()
+
+        new_questions = [question.format() for question in selection]
+
+        if( previous_question and previous_question in new_questions):
+            new_questions.pop(previous_question)
+        
+        return jsonify(
+          {
+            "question": random.choice(new_questions)
+          }
+        )
 
 
  
 
 
 
-     
-
-
-
-
-    '''
-    @TODO: 
-    Create a GET endpoint to get questions based on category. 
-
-    TEST: In the "List" tab / main screen, clicking on one of the 
-    categories in the left column will cause only questions of that 
-    category to be shown. 
-    '''
-
+  
 
     '''
     @TODO: 
