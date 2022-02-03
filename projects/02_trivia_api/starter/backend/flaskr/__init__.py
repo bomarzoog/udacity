@@ -161,7 +161,7 @@ def create_app(test_config=None):
 
         body = request.get_json()
         category = body.get("quiz_category")
-        previous_question = body.get("previous_questions")
+        previous_questions = body.get("previous_questions")
 
 
         if category['id'] == 0:
@@ -169,11 +169,12 @@ def create_app(test_config=None):
         else:
             selection = Question.query.filter(Question.category==category['id']).all()
 
-        new_questions = [question.format() for question in selection]
+        new_questions = [question.format()['id'] for question in selection]
+        print(new_questions)
+
 
         if( previous_question in new_questions):
             new_questions.pop(previous_question)
-            print(new_questions)
         
         return jsonify(
           {
