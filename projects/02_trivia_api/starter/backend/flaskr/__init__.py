@@ -163,6 +163,8 @@ def create_app(test_config=None):
         category = body.get("quiz_category")
         previous_question = body.get("previous_questions")
 
+        print(category)
+
         if category[id] == 0:
             selection = Question.query.all()
         else:
