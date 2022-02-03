@@ -165,10 +165,10 @@ def create_app(test_config=None):
 
         print(category)
 
-        if category[id] == 0:
+        if category['id'] == 0:
             selection = Question.query.all()
         else:
-            selection = Question.query.filter(Question.category==category[id]).all()
+            selection = Question.query.filter(Question.category==category['id']).all()
 
         new_questions = [question.format() for question in selection]
 
