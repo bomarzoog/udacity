@@ -173,8 +173,8 @@ def create_app(test_config=None):
         print(new_questions)
 
 
-        if( previous_question in new_questions):
-            new_questions.pop(previous_question)
+        if( previous_questions in new_questions):
+            new_questions.pop(previous_questions)
         
         return jsonify(
           {
