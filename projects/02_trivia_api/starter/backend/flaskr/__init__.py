@@ -151,7 +151,7 @@ def create_app(test_config=None):
               {
                 "questions": questions,
                 "total_questions": len(questions),
-                "currentCategory": currentCategory.format()
+                "currentCategory": currentCategory.format()["type"]
 
               }
             )
