@@ -9,7 +9,7 @@ from models import setup_db, Question, Category
 QUESTIONS_PER_PAGE = 10
 
 def paginate_questions(request, selection):
-  page = request.args.get("page", 1, type=int)
+  page = request.args.get('page', 1, type=int)
   start = (page - 1) * QUESTIONS_PER_PAGE
   end = start + QUESTIONS_PER_PAGE
 
@@ -44,6 +44,7 @@ def create_app(test_config=None):
  
         return jsonify(
           {
+            "success": True,
             "categories" : categories
           }
         )
@@ -63,18 +64,19 @@ def create_app(test_config=None):
   
 
       if len(current_questions) == 0:
-        abort(404)
+          abort(404)
 
       return jsonify(
-        {
-          'questions' : current_questions,
-          'total_questions': len(selection),
-          'categories': all_categories,
-          'currentCategory':current_categories
+          {
+            'success':True,
+            'questions' : current_questions,
+            'total_questions': len(selection),
+            'categories': all_categories,
+            'currentCategory':current_categories
 
         
-        }
-      )
+          }
+        )
 
     @app.route('/questions/<int:question_id>', methods=["DELETE"])
     def delete_question(question_id):
@@ -207,31 +209,15 @@ def create_app(test_config=None):
             422
         )
      
+    @app.errorhandler(405)
+    def unprocessable(error):
+        return (
+            jsonify({"success": False, "error": 405, "message": "method not allowed"}),
+            405
+        )
+     
             
 
 
- 
- 
-
-
-  
-
-    '''
-    @TODO: 
-    Create a POST endpoint to get questions to play the quiz. 
-    This endpoint should take category and previous question parameters 
-    and return a random questions within the given category, 
-    if provided, and that is not one of the previous questions. 
-
-    TEST: In the "Play" tab, after a user selects "All" or a category,
-    one question at a time is displayed, the user is allowed to answer
-    and shown whether they were correct or not. 
-    '''
-
-    '''
-    @TODO: 
-    Create error handlers for all expected errors 
-    including 404 and 422. 
-    '''
     return app
 
