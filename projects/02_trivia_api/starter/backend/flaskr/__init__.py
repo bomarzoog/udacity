@@ -176,7 +176,7 @@ def create_app(test_config=None):
 
 
         if( random_question['id'] in previous_questions ):
-            new_questions = [q for q in questions if not (q['id']==random_question['id'])]
+            new_questions = [question for question in questions if not (question['id'] in previous_questions)]
             random_question = random.choice(new_questions)
             print("new questions is: ",new_questions)
             print("new random question is:",random_question)
