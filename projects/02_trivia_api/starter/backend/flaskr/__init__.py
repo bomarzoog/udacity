@@ -163,36 +163,40 @@ def create_app(test_config=None):
         category = body.get("quiz_category")
         previous_questions = body.get("previous_questions")
 
-
-        if category['id'] == 0:
-            selection = Question.query.all()
-        else:
-            selection = Question.query.filter(Question.category==category['id']).all()
-
-        questions = [question.format() for question in selection]
-        random_question = random.choice(questions)
-        print("presvious questions: ", previous_questions)
-        print("random id is : ",random_question['id'])
+        try:
 
 
-        if( random_question['id'] in previous_questions ):
-            new_questions = [question for question in questions if not (question['id'] in previous_questions)]
-            random_question = random.choice(new_questions)
-            print("new questions is: ",new_questions)
-            print("new random question is:",random_question)
+            if category['id'] == 0:
+                selection = Question.query.all()
+            else:
+                selection = Question.query.filter(Question.category==category['id']).all()
+
+            questions = [question.format() for question in selection]
+            random_question = random.choice(questions)
+            print("presvious questions: ", previous_questions)
+            print("random id is : ",random_question['id'])
+
+
+            if( random_question['id'] in previous_questions ):
+                new_questions = [question for question in questions if not (question['id'] in previous_questions)]
+                random_question = random.choice(new_questions)
+                print("new questions is: ",new_questions)
+                print("new random question is:",random_question)
         
         
-        return jsonify(
-            {
-              "question": random_question
-            }
-        )
+            return jsonify(
+                {
+                  "question": random_question
+                }
+            )
+        except:
+          abort(404)
      
             
 
 
  
-
+ 
 
 
   
