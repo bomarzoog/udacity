@@ -156,7 +156,7 @@ def create_app(test_config=None):
               }
             )
     
-    @app.route('/quizzes', methods=[POST])
+    @app.route('/quizzes', methods=["POST"])
     def play_quizzes():
 
         body = request.get_json()
