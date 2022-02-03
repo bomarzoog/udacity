@@ -171,10 +171,11 @@ def create_app(test_config=None):
 
         new_questions = [question.format() for question in selection]
         random_question = random.choice(new_questions)
+        print(random_question['id'])
 
 
         if( random_question['id'] in previous_questions ):
-            new_questions.pop(random_question)
+            new_questions = [q for q in new_questions if not (q['id']==random_question['id'])]
         
         
         return jsonify(
