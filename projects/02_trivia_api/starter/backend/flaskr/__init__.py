@@ -179,6 +179,7 @@ def create_app(test_config=None):
             new_questions = [q for q in questions if not (q['id']==random_question['id'])]
             random_question = random.choice(new_questions)
             print("new questions is: ",new_questions)
+            print("new random question is:",random_question)
         
         
         return jsonify(
