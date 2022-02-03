@@ -195,17 +195,17 @@ def create_app(test_config=None):
 
     @app.errorhandler(404)
     def not_found(error):
-      return {
+      return (
           jsonify({"success": False, "error":404, "message": "resource not found"}),
           404
-      }
+      )
 
     @app.errorhandler(422)
     def unprocessable(error):
-        return {
+        return (
             jsonify({"success": False, "error": 422, "message": "unprocessable"}),
             422
-        }
+        )
      
             
 
