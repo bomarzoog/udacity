@@ -62,7 +62,7 @@ def create_app(test_config=None):
 
       print ("current_questions",current_questions)
       print ("curr_categories",curr_categories)
-      print ("page inside is", request.args.get('page')
+      print ("page inside is", request.args.get('page'))
   
 
       if len(current_questions) == 0:
