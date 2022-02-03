@@ -169,14 +169,14 @@ def create_app(test_config=None):
         else:
             selection = Question.query.filter(Question.category==category['id']).all()
 
-        new_questions = [question.format() for question in selection]
+        questions = [question.format() for question in selection]
         random_question = random.choice(new_questions)
         print("random id is : ",random_question['id'])
         print("presvious questions: ", previous_questions)
 
 
         if( random_question['id'] in previous_questions ):
-            new_questions = [q for q in new_questions if not (q['id']==random_question['id'])]
+            new_questions = [q for q in questions if not (q['id']==random_question['id'])]
             print("new questions is: ",new_questions)
         
         
