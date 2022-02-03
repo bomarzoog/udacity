@@ -169,18 +169,21 @@ def create_app(test_config=None):
         else:
             selection = Question.query.filter(Question.category==category['id']).all()
 
-        new_questions = [question.format()['id'] for question in selection]
-        print(new_questions)
+        new_questions = [question.format() for question in selection]
+        random_question = random.choice(new_questions)
 
 
-        if( previous_questions in new_questions):
-            new_questions.pop(previous_questions)
+        if( random_question['id'] in previous_questions ):
+            new_questions.pop(random_question)
+        
         
         return jsonify(
-          {
-            "question": random.choice(new_questions)
-          }
+            {
+              "question": random.choice(new_questions)
+            }
         )
+     
+            
 
 
  
