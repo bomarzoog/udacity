@@ -139,7 +139,7 @@ class TriviaTestCase(unittest.TestCase):
         data = json.loads(res.data)
         self.assertEqual(res.status_code, 200)
         self.assertEqual(data['success'], True)
-        self.assertEqual(data['question']['category'], '3')
+        self.assertEqual(data['question']['category'], 3)
 
     def test_quiz_not_found_category(self):
         quiz = {
