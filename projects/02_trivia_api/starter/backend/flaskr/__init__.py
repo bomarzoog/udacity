@@ -146,7 +146,7 @@ def create_app(test_config=None):
         questions = [question.format() for question in selection]
         currentCategory = Category.query.filter(Category.id==category_id).one_or_none()
 
-        if len(questions==0):
+        if len(questions)==0:
             abort(404)
 
         if questions:
