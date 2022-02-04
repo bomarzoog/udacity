@@ -152,7 +152,7 @@ def create_app(test_config=None):
         if questions:
             return jsonify(
               {
-                "sucess":True,
+                "success":True,
                 "questions": questions,
                 "total_questions": len(questions),
                 "currentCategory": currentCategory.format()["type"]
