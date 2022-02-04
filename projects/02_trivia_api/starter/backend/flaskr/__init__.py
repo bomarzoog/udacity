@@ -119,7 +119,8 @@ def create_app(test_config=None):
                 return jsonify(
                     {
                         "questions": found_questions,
-                        "total_questions": len(found_questions)
+                        "total_questions": len(found_questions),
+                        "success": True
                     }
                 )
         else:
