@@ -33,7 +33,7 @@ def create_app(test_config=None):
 
 
     @app.route('/categories')
-    def retrive_categories():
+    def get_categories():
         categories = {}
         selection = Category.query.order_by(Category.id).all()
       
@@ -51,7 +51,7 @@ def create_app(test_config=None):
         )
     
     @app.route('/questions')
-    def retrive_questions():
+    def get_questions():
 
       selection = Question.query.order_by(Question.id).all()
       current_questions = paginate_questions(request, selection)
@@ -60,10 +60,6 @@ def create_app(test_config=None):
       curr_categories = set([question["category"] for question in current_questions])
       current_categories = [all_categories[id] for id in curr_categories ]
 
-      print ("current_questions",current_questions)
-      print ("curr_categories",curr_categories)
-      print ("page inside is", request.args.get('page'))
-  
 
       if len(current_questions) == 0:
           abort(404)
@@ -145,10 +141,13 @@ def create_app(test_config=None):
 
 
     @app.route('/categories/<int:category_id>/questions')
-    def retrive_questions_by_category(category_id):
+    def get_questions_by_category(category_id):
         selection = Question.query.filter(Question.category==category_id).all()
         questions = [question.format() for question in selection]
         currentCategory = Category.query.filter(Category.id==category_id).one_or_none()
+
+        if len(currentCategory==0):
+            abort(404)
 
         if questions:
             return jsonify(
