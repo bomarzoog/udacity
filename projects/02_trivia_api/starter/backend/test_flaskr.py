@@ -67,7 +67,7 @@ class TriviaTestCase(unittest.TestCase):
         data = json.loads(res.data)
         self.assertEqual(res.status_code, 404)
         self.assertEqual(data["success"], False)
-        self.assertEqual(data["message"], "page not found")
+        self.assertEqual(data["message"], "Page not found")
 
     def test_delete_questions(self):
         res = self.client().delete("/questions/5")
@@ -83,7 +83,7 @@ class TriviaTestCase(unittest.TestCase):
         data = json.loads(res.data)
         self.assertEqual(res.status_code, 404)
         self.assertEqual(data["success"], False)
-        self.assertEqual(data["message"], "page not found")
+        self.assertEqual(data["message"], "Page not found")
 
     def test_add_questions(self):
         res = self.client().post("/questions", json={
@@ -100,7 +100,7 @@ class TriviaTestCase(unittest.TestCase):
         
 
     def test_search(self):
-        res = self.client().post('/search', json={'searchTerm': 'title'})
+        res = self.client().post('/search', json={'searchTerm': "title"})
         data = json.loads(res.data)
         self.assertEqual(res.status_code, 200)
         self.assertEqual(data['success'], True)

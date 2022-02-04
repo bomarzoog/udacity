@@ -201,7 +201,7 @@ def create_app(test_config=None):
     @app.errorhandler(404)
     def not_found(error):
       return (
-          jsonify({"success": False, "error":404, "message": "page not found"}),
+          jsonify({"success": False, "error":404, "message": "Page not found"}),
           404
       )
 
