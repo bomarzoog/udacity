@@ -119,7 +119,7 @@ class TriviaTestCase(unittest.TestCase):
         self.assertEqual(res.status_code, 200)
         self.assertEqual(data['success'], True)
         self.assertTrue(data['questions'])
-        self.assertEqual(data['currentCategory'], 'Science')
+        self.assertTrue(data['currentCategory'])
 
     def test_questions_in_category_not_found(self):
         res = self.client().get('/categories/100/questions')
