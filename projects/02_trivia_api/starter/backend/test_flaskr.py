@@ -100,14 +100,14 @@ class TriviaTestCase(unittest.TestCase):
         
 
     def test_search(self):
-        res = self.client().post('/search', json={'searchTerm': "title"})
+        res = self.client().post('/search', json={searchTerm: "title"})
         data = json.loads(res.data)
         self.assertEqual(res.status_code, 200)
         self.assertEqual(data['success'], True)
         self.assertEqual(len(data['questions']), 2)
 
     def test_search_not_found(self):
-        res = self.client().post('/search', json={'searchTerm': 'girwgjslkjsdljsdflj'})
+        res = self.client().post('/search', json={searchTerm: 'girwgjslkjsdljsdflj'})
         data = json.loads(res.data)
         self.assertEqual(res.status_code, 404)
         self.assertEqual(data['success'], False)
