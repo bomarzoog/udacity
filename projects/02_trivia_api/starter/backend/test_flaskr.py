@@ -63,7 +63,7 @@ class TriviaTestCase(unittest.TestCase):
 
     
     def test_get_questions_bad_page(self):
-        res = self.client().post("/questions?page=1000")
+        res = self.client().get("/questions?page=1000")
         data = json.loads(res.data)
         self.assertEqual(res.status_code, 404)
         self.assertEqual(data["success"], False)
