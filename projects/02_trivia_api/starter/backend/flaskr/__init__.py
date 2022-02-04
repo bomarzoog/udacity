@@ -112,12 +112,16 @@ def create_app(test_config=None):
         if search_term:
             search_query = Question.query.filter(Question.question.ilike("%{}%".format(search_term))).all()
             found_questions = [question.format() for question in search_query]
-            
-            return jsonify(
-              {
-                "questions": found_questions
-              }
-            )
+
+            if len(found_questions)==0:
+                  abort(404)
+            else:
+                return jsonify(
+                    {
+                        "questions": found_questions,
+                        "total_questions": len(found_questions)
+                    }
+                )
         else:
             try:
                 question = Question(question=new_question,answer=new_answer,difficulty=new_difficulty,category=new_category)
