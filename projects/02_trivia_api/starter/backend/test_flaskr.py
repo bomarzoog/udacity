@@ -114,7 +114,7 @@ class TriviaTestCase(unittest.TestCase):
         self.assertEqual(data['message'], 'Page not found')
 
     def test_questions_in_category(self):
-        res = self.client().get('/categories/4/questions')
+        res = self.client().get('/categories/2/questions')
         data = json.loads(res.data)
         self.assertEqual(res.status_code, 200)
         self.assertEqual(data['success'], True)

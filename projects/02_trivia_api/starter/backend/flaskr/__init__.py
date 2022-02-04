@@ -146,12 +146,13 @@ def create_app(test_config=None):
         questions = [question.format() for question in selection]
         currentCategory = Category.query.filter(Category.id==category_id).one_or_none()
 
-        if len(currentCategory==0):
+        if len(questions==0):
             abort(404)
 
         if questions:
             return jsonify(
               {
+                "sucess":True,
                 "questions": questions,
                 "total_questions": len(questions),
                 "currentCategory": currentCategory.format()["type"]
@@ -199,7 +200,7 @@ def create_app(test_config=None):
     @app.errorhandler(404)
     def not_found(error):
       return (
-          jsonify({"success": False, "error":404, "message": "resource not found"}),
+          jsonify({"success": False, "error":404, "message": "page not found"}),
           404
       )
 
